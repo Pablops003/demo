@@ -1,0 +1,1 @@
+docker run -dp 5432:5432 -e POSTGRES_PASSWORD=abcd -e POSTGRES_USER=user -e POSTGRES_DB=db -v ./dbdata:/var/lib/postgresql postgres
