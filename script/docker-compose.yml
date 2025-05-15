@@ -1,10 +1,10 @@
 services:
   postgres:
     image: postgres
-    container_name: postgres_$USER
+    container_name: postgres
     restart: always
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: abcd
@@ -14,7 +14,7 @@ services:
       - ./scriptdb.sql:/docker-entrypoint-initdb.d/scriptdb.sql
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin_$USER
+    container_name: pgadmin
     restart: always
     ports:
       - "8088:80"
@@ -26,6 +26,6 @@ services:
       - pgadmin:/var/lib/pgadmin
 volumes:
   pgdata:
-    name: pgdata_$USER
+    name: pgdata
   pgadmin:
-    name: pgadmin_$USER
+    name: pgadmin
