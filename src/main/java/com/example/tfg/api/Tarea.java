@@ -11,19 +11,19 @@ import java.util.UUID;
 public class Tarea {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
-    private String titulo;
-    private String descripcion;
-    private String categoria;
-    private String prioridad;
-    private boolean completada;
-    private LocalDate fecha;
+    @GeneratedValue(strategy = GenerationType.UUID)//AUTO antes
+    public UUID id;
+    public String titulo;
+    public String descripcion;
+    public String categoria;
+    public String prioridad;
+    public boolean completada;
+    public LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     @JsonBackReference
-    private Usuario usuario;
+    public Usuario usuario;
 
     public UUID getId() {
         return id;

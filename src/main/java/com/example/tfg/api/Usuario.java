@@ -1,67 +1,62 @@
 package com.example.tfg.api;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
+import java.util.Set;
 import java.util.UUID;
-import java.util.List;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "users")
 public class Usuario {
     @jakarta.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)  // Usamos AUTO para UUID
-    private UUID id;
+    public UUID id;
+    public String username;
+    public String password;
+    public boolean enabled;
 
-    private String correo;  // único
-    private String nombre;
-    private String contrasena;
+    @OneToMany(mappedBy = "username")
+    public Set<Authority> authorities;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Tarea> tareas;
-
-
+    public UUID getId() {
+        return id;
+    }
 
     public void setId(UUID id) {
         this.id = id;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getUsername() {
+        return username;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getPassword() {
+        return password;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public List<Tarea> getTareas() {
-        return tareas;
+    public Set<Authority> getAuthorities() {
+        return authorities;
     }
 
-    public void setTareas(List<Tarea> tareas) {
-        this.tareas = tareas;
-    }
-
-    public UUID getId() {
-        return id;
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
     }
 }
