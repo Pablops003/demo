@@ -12,4 +12,4 @@ FROM eclipse-temurin:24.0.1_9-jre-ubi9-minimal
 WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar app.jar
 EXPOSE 10000
-ENTRYPOINT ["java", "-jar", "app.jar"
+ENTRYPOINT ["java", "-jar", "app.jar"]
