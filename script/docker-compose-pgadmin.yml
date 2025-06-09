@@ -20,6 +20,20 @@ services:
       DBURL: jdbc:postgresql://postgres:5432/db
       DBUSER: user
       DBPASS: abcd
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "8088:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_MAX_LOGIN_ATTEMPTS: 0
+    volumes:
+      - pgadmin:/var/lib/pgadmin
 volumes:
   pgdata:
     name: pgdata
+  pgadmin:
+    name: pgadmin
